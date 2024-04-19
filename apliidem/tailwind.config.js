@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'kigo': 'rgba(249, 79, 13, 1)',
+
+      }
+    },
   },
   plugins: [],
 }

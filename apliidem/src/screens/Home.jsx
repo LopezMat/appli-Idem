@@ -1,8 +1,15 @@
 import React from 'react'
+import LabelBottomNavigation from '../components/NavBar'
+
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div >
+
+
+      <LabelBottomNavigation />
+
+    </div>
   )
 }
 

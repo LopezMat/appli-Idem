@@ -52,12 +52,13 @@ const Register = () => {
   }
 
   return (
-    <div className='flex flex-1 flex-col h-screen justify-start items-center bg-black'>
-      <h2 className='text-white font-bold text-xl py-5'>Enregistrez vous!</h2>
+    <div className='flex flex-1 flex-col h-screen justify-start items-center bg-kigo'>
+      <img src={`${apiRoot}/images/kigoLogo.jpg`} alt='logo' className='w-2/3 mt-20' />
+      <h2 className='text-white font-bold text-xl py-5 mt-5'>Enregistrez vous!</h2>
       <form onSubmit={handleSubmit} className='max-w-md mx-auto'>
         {/* input pour pseudo */}
         <CustomInput
-          state={nickname}
+          state={pseudo}
           label="Mon pseudo"
           type="text"
           callable={(event) => setPseudo(event.target.value)}

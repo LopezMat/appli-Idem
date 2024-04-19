@@ -5,7 +5,7 @@ import { USER_INFOS } from "../constants/appConstant";
 const AuthContext = createContext({
   userId: '', //state
   email: '', //state
-  pesudo: '', //state
+  pseudo: '', //state
   setUserId: () => { }, //méthode pour modifier le state userId
   setEmail: () => { }, //méthode pour modifier le state email
   setPseudo: () => { }, //méthode pour modifier le state nickname
