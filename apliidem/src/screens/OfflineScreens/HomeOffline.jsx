@@ -5,7 +5,6 @@ const HomeOffline = () => {
   return (
     <>
       <div className='w-screen bg-black'>
-        <h1>Vous etes déconnecter</h1>
       </div>
       <Outlet />
     </>

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { USER_INFOS } from './constants/appConstant'
 import { checkUser } from './service/userService'
 import { useSelector } from 'react-redux'
+import LabelBottomNavigation from './components/NavBar'
 
 
 
@@ -39,6 +40,7 @@ const App = () => {
   return (
     <>
       <Outlet />
+      <LabelBottomNavigation className='fixed bottom-0' />
     </>
 
   );

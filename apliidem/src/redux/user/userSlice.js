@@ -3,6 +3,7 @@ import { api } from "../../constants/ApiConstant";
 import axios from "axios";
 
 
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -36,9 +37,11 @@ export const fetchUser = (id) => async dispatch => {
     dispatch(setLoading(false));
   } catch (error) {
     console.log(`Erreur lors du fetchUser : ${error}`)
-    setLoading(false);
+    dispatch(setLoading(false));
   }
   //ensuite on range la méthode dans le store redux
 }
+
+export const { setLoading, setUserFavorite, setUser, setAvatars } = userSlice.actions
 
 export default userSlice.reducer

@@ -1,14 +1,12 @@
 import React from 'react'
-import LabelBottomNavigation from '../components/NavBar'
+import LabelBottomNavigation from '../../components/NavBar'
 
 
 const Home = () => {
   return (
-    <div >
-
+    <div className=' flex flex-auto items-center justify-center'>
 
       <LabelBottomNavigation />
-
     </div>
   )
 }

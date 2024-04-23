@@ -1,7 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import ErrorPage from "../screens/ErrorScreens/ErrorPage";
-import Home from "../screens/Home";
+import Home from "../screens/OnlineScreens/Home";
+import ProjetScreen from "../screens/OnlineScreens/ProjetScreen";
+import ProfileScreens from "../screens/OnlineScreens/acount/ProfileScreens";
+import EditProfil from "../screens/OnlineScreens/acount/EditProfil";
 
 const OnlineRouter = createBrowserRouter([
   {
@@ -17,6 +20,19 @@ const OnlineRouter = createBrowserRouter([
         path: "/",
         element: <Home />
       },
+      {
+        path: "/profil/:id",
+        element: <ProfileScreens />
+      },
+      {
+        path: "/profil/edit",
+        element: <EditProfil />
+      },
+      {
+        path: "/projet/:id",
+        element: <ProjetScreen />
+      },
+
 
     ]
   }

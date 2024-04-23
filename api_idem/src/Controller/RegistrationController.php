@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Profil;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Security\UserAuthenticator;
@@ -38,6 +39,14 @@ class RegistrationController extends AbstractController
         );
         //on persiste l'utilisateur
         $entityManager->persist($user);
+
+        //on crée un profil reliée au user
+        $profil = new Profil();
+        $profil->setUser($user);
+        $profil->setBio('.....');
+        $profil->setFiliere(null);
+        $entityManager->persist($profil);
+
         //on flush
         $entityManager->flush();
 
