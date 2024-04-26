@@ -2,48 +2,81 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProfilRepository;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ProfilRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: ['groups' => ['profil:read']],
+    denormalizationContext: ['groups' => ['profil:write']],
+)]
+#[ApiFilter(
+    SearchFilter::class,
+    properties: [
+        'user' => 'exact',
+
+    ]
+)]
 
 class Profil
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(
+        [
+            'user:read',
+            'user:write',
+            'profil:read',
+            'profil:write',
+
+
+        ]
+    )]
     private ?int $id = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'profils')]
+    #[Groups([
+        'profil:read',
+        'profil:write',
+
+    ])]
     private ?Filiere $filiere = null;
 
     /**
      * @var Collection<int, Competences>
      */
     #[ORM\ManyToMany(targetEntity: Competences::class, inversedBy: 'profils')]
+    #[Groups(['profil:read', 'profil:write'])]
     private Collection $competences;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['profil:read', 'profil:write'])]
     private ?string $bio = null;
 
     /**
      * @var Collection<int, Post>
      */
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'profil')]
+    #[Groups(['profil:read', 'profil:write'])]
     private Collection $postProfil;
 
     /**
      * @var Collection<int, Contact>
      */
     #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'profil')]
+    #[Groups(['profil:read', 'profil:write'])]
     private Collection $contact;
 
     public function __construct()

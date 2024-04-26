@@ -29,6 +29,10 @@ const OnlineRouter = createBrowserRouter([
         element: <EditProfil />
       },
       {
+        path: "/edit",
+        element: <EditUser />
+      },
+      {
         path: "/projet/:id",
         element: <ProjetScreen />
       },

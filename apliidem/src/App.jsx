@@ -39,6 +39,7 @@ const App = () => {
 
   return (
     <>
+      <img src="back.svg" alt="" className="absolute top-0 z-[-1] w-full" />
       <Outlet />
       <LabelBottomNavigation className='fixed bottom-0' />
     </>

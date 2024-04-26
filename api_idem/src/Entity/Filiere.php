@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\FiliereRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: FiliereRepository::class)]
 #[ApiResource]
@@ -15,9 +16,21 @@ class Filiere
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(
+        [
+            'profil:read',
+            'profil:write',
+        ]
+    )]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(
+        [
+            'profil:read',
+            'profil:write',
+        ]
+    )]
     private ?string $label = null;
 
     /**

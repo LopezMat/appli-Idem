@@ -10,10 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Nullable;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: ['groups' => ['user:read']],
+    denormalizationContext: ['groups' => ['user:write']],
+)]
+
 
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -21,9 +26,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['user:read', 'user:write'])]
     private ?int $id = null;
 
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    #[Groups(['user:read', 'user:write'])]
+    private ?Profil $profil = null;
+
     #[ORM\Column(length: 180)]
+    #[Groups(['user:read', 'user:write'])]
     private ?string $email = null;
 
     /**
@@ -45,6 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $projets;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['user:read', 'user:write'])]
     private ?string $pseudo = null;
 
     #[ORM\OneToMany(mappedBy: 'userPost', targetEntity: Post::class)]
@@ -197,6 +210,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $post->setUserPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProfil(): ?Profil
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(Profil $profil): static
+    {
+        // set the owning side of the relation if necessary
+        if ($profil->getUser() !== $this) {
+            $profil->setUser($this);
+        }
+
+        $this->profil = $profil;
 
         return $this;
     }
