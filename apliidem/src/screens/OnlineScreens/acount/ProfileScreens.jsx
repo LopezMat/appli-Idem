@@ -8,6 +8,7 @@ import PageLoader from '../../../components/Loader/PageLoader';
 import axios from 'axios';
 import { api } from '../../../constants/ApiConstant';
 import Button from '@mui/material/Button';
+import BackToHomeButton from '../../../components/DetailUser/BackToHomeButton';
 
 const Account = () => {
 
@@ -47,7 +48,6 @@ const Account = () => {
   if (loading) return <PageLoader />
 
   return (
-    console.log(profil),
     < div className='flex flex-col items-center justify-center mt-20' >
       <h1 className="text-4xl font-bold mb-5"> Mon compte</h1>
       <div className='flex flex-col items-center justify-center'>
@@ -72,8 +72,8 @@ const Account = () => {
         <Link to="/profil/edit" className='bg-orange-500 shadow-lg shadow-orange-500/50 text-white font-bold py-2 px-4 rounded mt-5'>
           <Button variant="contained outlined">Modification du profil</Button>
         </Link>
-
       </div>
+      <BackToHomeButton/>
     </div >
 
 

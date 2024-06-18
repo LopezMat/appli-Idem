@@ -5,6 +5,7 @@ import Home from "../screens/OnlineScreens/Home";
 import ProjetScreen from "../screens/OnlineScreens/ProjetScreen";
 import ProfileScreens from "../screens/OnlineScreens/acount/ProfileScreens";
 import EditProfil from "../screens/OnlineScreens/acount/EditProfil";
+import EditUser from "../screens/OnlineScreens/acount/EditUser";
 
 const OnlineRouter = createBrowserRouter([
   {

@@ -66,6 +66,19 @@ const EditProfil = () => {
 
   const [user, setUser] = useState({});
   const [filliere, setFilliere] = useState('');
+  const [selectFiliere, setSelectFiliere] = useState([{
+    "id" : 1,
+    "name": "Marketing",
+  },
+  {
+    "id" : 2,
+    "name": "Service",
+  },
+  {
+    "id" : 3,
+    "name": "Technique",
+  }
+])
   const [listFiliere, setListFiliere] = useState([]);
   const [competences, setCompetences] = useState('');
   const [biographie, setBiographie] = useState('');
@@ -81,6 +94,7 @@ const EditProfil = () => {
     try {
       setLoading(true);
       const response = await axios.get(`${api}/profils?page=1&user=${userId.userId}`)
+      console.log(response.data);
       setUser(response.data['hydra:member'][0]);
       setFilliere(response.data['hydra:member'][0].filiere.id);
       setBiographie(response.data['hydra:member'][0].bio);
@@ -161,7 +175,7 @@ const EditProfil = () => {
             </div>
           ))}
         </div>
-        {/* input pour password */}
+        {/* input pour Biographie */}
         < CustomInput
           state={biographie}
           label="Ma biographie"
@@ -181,5 +195,4 @@ const EditProfil = () => {
   )
 
 }
-
 export default EditProfil
